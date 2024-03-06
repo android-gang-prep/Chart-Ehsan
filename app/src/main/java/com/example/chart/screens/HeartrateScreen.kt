@@ -281,45 +281,45 @@ fun HeartrateScreen() {
                     ballInLinePositionPercent = positionBallPercentage.value
                 )
             }
-//            Box(modifier = Modifier
-//                .width(1.dp)
-//                .offset {
-//                    IntOffset(badgeXInRoot.value.toInt() + 30, 0)
-//                }
-//                .fillMaxHeight()
-//                .background(Color.Gray))
+            Box(modifier = Modifier
+                .width(1.dp)
+                .offset {
+                    IntOffset(badgeXInRoot.value.toInt() + 30, 0)
+                }
+                .fillMaxHeight()
+                .background(Color.Gray))
         }
-//        Row(modifier=Modifier.fillMaxWidth().padding(start = 16.dp, end = 32.dp,top = 12.dp,bottom = 12.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-//            val formatHeartTime = SimpleDateFormat("MM/dd HH:mm")
-//            Text(text = formatHeartTime.format(Date(startTime)))
-//            Text(text = formatHeartTime.format(Date(endTime)))
-//        }
-//        BoxWithConstraints(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .height(35.dp)
-//
-//                .background(Color.Gray)
-//                .padding(end = 58.dp), contentAlignment = Alignment.TopEnd
-//        ) {
-//            Box(modifier = Modifier
-//                .size(25.dp)
-//                .offset { IntOffset(badgeX.value.toInt(), -30) }
-//                .onGloballyPositioned {
-//                    badgeXInRoot.value = it.positionInRoot().x
-//                }
-//                .clip(CircleShape)
-//                .background(Color.White)
-//                .pointerInput(Unit) {
-//                    detectHorizontalDragGestures(onHorizontalDrag = { change, value ->
-//                        val newValue = badgeX.value + value
-//                        if (newValue < size.width) {
-//                            badgeX.value = newValue
-//                            positionBallPercentage.value =
-//                                ((100 * (newValue) - 40) / ((configuration.screenWidthDp - 58) * density.density)).toInt()
-//                        }
-//                    })
-//                })
-//        }
+        Row(modifier=Modifier.fillMaxWidth().padding(start = 16.dp, end = 32.dp,top = 12.dp,bottom = 12.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+            val formatHeartTime = SimpleDateFormat("MM/dd HH:mm")
+            Text(text = formatHeartTime.format(Date(startTime)))
+            Text(text = formatHeartTime.format(Date(endTime)))
+        }
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(35.dp)
+
+                .background(Color.Gray)
+                .padding(end = 58.dp), contentAlignment = Alignment.TopEnd
+        ) {
+            Box(modifier = Modifier
+                .size(25.dp)
+                .offset { IntOffset(badgeX.value.toInt(), -30) }
+                .onGloballyPositioned {
+                    badgeXInRoot.value = it.positionInRoot().x
+                }
+                .clip(CircleShape)
+                .background(Color.White)
+                .pointerInput(Unit) {
+                    detectHorizontalDragGestures(onHorizontalDrag = { change, value ->
+                        val newValue = badgeX.value + value
+                        if (newValue < size.width) {
+                            badgeX.value = newValue
+                            positionBallPercentage.value =
+                                ((100 * (newValue)) / ((configuration.screenWidthDp) * density.density)).toInt()
+                        }
+                    })
+                })
+        }
     }
 }

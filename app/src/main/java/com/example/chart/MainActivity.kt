@@ -6,11 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerSnapDistance
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.chart.screens.CandleStickScreen
+import com.example.chart.screens.PAIScreen
 import com.example.chart.screens.HeartrateScreen
 import com.example.chart.screens.HomeScreen
 import com.example.chart.screens.NightSleepScreen
@@ -27,11 +33,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     val appState = LocalAppState.current
 
                     NavHost(
                         navController = appState.navController,
-                        startDestination = Routes.HeartRate.route,
+                        startDestination = Routes.Home.route,
                         enterTransition = {
                             slideIntoContainer(
                                 AnimatedContentTransitionScope.SlideDirection.Left,
@@ -56,7 +63,6 @@ class MainActivity : ComponentActivity() {
                                 tween(500)
                             )
                         }
-
                     ) {
                         composable(Routes.Home.route) {
                             HomeScreen()
@@ -69,6 +75,14 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Routes.NightSleep.route) {
                             NightSleepScreen()
+                        }
+                        composable(Routes.PAI.route) {
+                            PAIScreen()
+                        }
+                        composable(Routes.CandleStick.route+"/{crypto}", arguments = listOf(
+                            navArgument("crypto") { type = NavType.StringType }
+                        )) {
+                            CandleStickScreen(crypto = it.arguments?.getString("crypto") ?: "BTC")
                         }
                     }
                 }

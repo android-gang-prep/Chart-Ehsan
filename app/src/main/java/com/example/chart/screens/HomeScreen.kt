@@ -2,6 +2,7 @@ package com.example.chart.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -27,6 +28,21 @@ fun HomeScreen() {
         }
         Button(onClick = { appState.navController.navigate(Routes.HeartRate.route) }, shape = RoundedCornerShape(8.dp)) {
             Text(text = "Heart Rate")
+        }
+        Button(onClick = { appState.navController.navigate(Routes.PAI.route) }, shape = RoundedCornerShape(8.dp)) {
+            Text(text = "PAI")
+        }
+        Text(text = "Candle Stick")
+        Row (horizontalArrangement = Arrangement.spacedBy(8.dp)){
+            Button(onClick = { appState.navController.navigate(Routes.CandleStick.route+"/DOGE") }, shape = RoundedCornerShape(8.dp)) {
+                Text(text = "Doge Stick 4h")
+            }
+            Button(onClick = { appState.navController.navigate(Routes.CandleStick.route+"/BTC") }, shape = RoundedCornerShape(8.dp)) {
+                Text(text = "BTC Stick 4h")
+            }
+            Button(onClick = { appState.navController.navigate(Routes.CandleStick.route+"/TRX") }, shape = RoundedCornerShape(8.dp)) {
+                Text(text = "TRX Stick 1h")
+            }
         }
     }
 }
